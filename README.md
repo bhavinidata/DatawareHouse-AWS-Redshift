@@ -44,6 +44,14 @@ This contains 5 table star schema and two "staging" tables, which serves as an a
         duration          FLOAT8,
         year              INT
 
+##### Star schema tables
+Fact table: songplay
+Dimension tables: artists, users, time, songs 
+** ER Diagram has been drawn with dbdiagram.io (https://dbdiagram.io/d).
+
+![](ER_Diagram.png?raw=true)
+
+
 ### ETL Pipeline
 The data from song_data and log_data JSON files are extracted and put in staging tables. Staging tables are necessary for data warehouses, as they serve as an area to perform checks and data cleaning and transformation before insertion.Later, from the staging tables, data is loaded into song, user, artist, songplays, time tables.
 
@@ -87,4 +95,5 @@ Get the songs by artists.
 Get the number of songs by artists.
 
 `SELECT COUNT(songs.song_id) FROM songs JOIN artists ON songs.artist_id = artists.artist_id WHERE artists.name = 'John Williams';`
+
 Result: 3
