@@ -1,10 +1,10 @@
 # Datawarehouse - AWS Redshift
 
 ### Objective
-A client Sparkify - a music streaming startup, has grown their user base and song database and want to move their processes and data onto the cloud. Their data resides in S3 bucket, in a directory of JSON logs on user activity on the app, as well as a directory with JSON metadata on the songs in their app. Need to provide solution that enables music stores to easily process lots of information efficiently.
+A client Sparkify - a music streaming startup, has grown their user base and song database. They want to move their processes and data onto the cloud. Their data resides in S3 bucket, in a directory of JSON logs on user activity on the app, as well as a directory with JSON metadata on the songs in their app. Need to provide solution that enables music stores to easily process lots of information efficiently.
 
 ### Project Summary
-An implementation of a Data Warehouse leveraging AWS RedShift. This project builds an ETL pipeline for the database hosted on AWS Redshift that extracts their data from multiple S3 buckets, stages them in Redshift, and transforms data into a set of dimensional tables for their analytics team to continue finding insights in what songs their users are listening to.
+An implementation of a Data Warehouse leveraging AWS RedShift. This project builds an ETL pipeline for the database hosted on AWS Redshift that extracts their data from multiple JSON files residing in S3 buckets, stages them in Redshift, and transforms data into a set of dimensional tables for their analytics team to continue finding insights in what songs their users are listening to.
 
 ### Databases and Database Schema:
 This contains 5 table star schema and two "staging" tables, which serves as an area for processing the data before insertion into the database.
@@ -67,14 +67,23 @@ Running the following query in redshift query editor:
 
 <1.> 
 Get the number of songs.
+
 `SELECT Count(*) FROM songplays;
 Result: 333`
+
 <2.> 
 Get name of artists by running following query.
+
 `select * from artists limit 10;`
+
 Pick one artist. here for ex- 'John Williams'
+
 `select * from artists where artists.name = 'John Williams';`
+
 Get the songs by artists.
+
 `SELECT songs.song_id, artists.name FROM songs JOIN artists ON songs.artist_id = artists.artist_id WHERE artists.name = 'John Williams';`
+
 Get the number of songs by artists.
+
 `SELECT COUNT(songs.song_id) FROM songs JOIN artists ON songs.artist_id = artists.artist_id WHERE artists.name = 'John Williams';`
