@@ -87,3 +87,4 @@ Get the songs by artists.
 Get the number of songs by artists.
 
 `SELECT COUNT(songs.song_id) FROM songs JOIN artists ON songs.artist_id = artists.artist_id WHERE artists.name = 'John Williams';`
+Result: 3
